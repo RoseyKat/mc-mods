@@ -9,7 +9,7 @@ mod_file = "https://raw.githubusercontent.com/RoseyKat/mc-mods/main/mods/mods.zi
 with open("data/config.json", "r") as f:
     data = json.loads(f.read())
 
-    essentials = data["essentials"]
+    essentials = data["essential"]
     mod_type = data["mod_type"]
     version = data["version"]
     rm_old = data["rm_old"]
