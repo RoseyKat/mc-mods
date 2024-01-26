@@ -3,6 +3,8 @@ import json
 import requests
 import shutil
 
+shutil.rmtree("cache")
+
 mc_folder = os.path.expanduser("~\\AppData\\Roaming\\.minecraft")
 mod_file = "https://raw.githubusercontent.com/RoseyKat/mc-mods/main/mods/mods.zip"
 
@@ -29,3 +31,7 @@ with open("cache/mods.zip", "wb") as f:
     f.write(downloaded_file.content)
 
 shutil.unpack_archive("cache/mods.zip", path)
+
+input(f"Downloaded mods to: '{path}'\npress enter to exit.....")
+shutil.rmtree("cache")
+exit()
