@@ -2,11 +2,11 @@ import os
 import json
 import requests
 import shutil
+from time import sleep
 
 shutil.rmtree("cache")
 
 mc_folder = os.path.expanduser("~\\AppData\\Roaming\\.minecraft")
-mod_file = "https://raw.githubusercontent.com/RoseyKat/mc-mods/main/mods/mods.zip"
 
 with open("data/config.json", "r") as f:
     data = json.loads(f.read())
@@ -25,10 +25,23 @@ if rm_old:
     shutil.rmtree(path)
     os.makedirs(path)
 
-downloaded_file = requests.get(mod_file)
-os.makedirs("cache", exist_ok=True)
-with open("cache/mods.zip", "wb") as f:
-    f.write(downloaded_file.content)
+def download_mods():
+    with open("data/mods.json", "r") as f:
+        mods_list = json.loads(f.read())["mods"]
+
+    for i in mods_list:
+        sleep(0.2)
+        file = requests.get(f"https://raw.githubusercontent.com/RoseyKat/mc-mods/main/mods/{i}")
+
+        os.makedirs("cache", exist_ok=True)
+        with open(f"cache/{i}", "wb") as f:
+            f.write(file.content)
+
+        print(f"Downloaded: '{i}'")
+
+download_mods()
+
+shutil.make_archive("mods", "zip", "cache")
 
 shutil.unpack_archive("cache/mods.zip", path)
 
