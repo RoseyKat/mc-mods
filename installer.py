@@ -18,6 +18,7 @@ with open("data/config.json", "r") as f:
 
 if essentials:
     path = f"{mc_folder}\\essential_mod\\fabric\\{version}\\{version} Fabric Essential\\mods"
+    os.makedirs(path,exist_ok=True)
 else:
     path = f"{mc_folder}\\mods"
 
