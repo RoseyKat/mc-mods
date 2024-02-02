@@ -73,6 +73,7 @@ def get_current_versions():
         if version_type == "release":
             version_list.insert(-1, str(version_id))
 
+    config["versions"] = []
     config["versions"] = version_list
 
     with open("config.json", "w") as f:
