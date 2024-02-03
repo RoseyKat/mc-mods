@@ -2,12 +2,12 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter.filedialog import askopenfilenames
 import os
-import shutil
 import installer
 import json
 import sys
 
 os.makedirs("cache", exist_ok=True)
+installer.get_current_versions()
 
 root = tk.Tk()
 
